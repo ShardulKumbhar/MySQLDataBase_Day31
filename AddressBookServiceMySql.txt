@@ -1,0 +1,258 @@
+Enter password: ***********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> create database address_book_service;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| address_book_service |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| sys                  |
++----------------------+
+5 rows in set (0.02 sec)
+
+mysql> use address_book_service;
+Database changed
+mysql> create table addressbook (id int not null auto_increment, FirstName varchar(150) not null, LastName varchar(150) not null, Address varchar(150) not null, City varchar(163) not null, State varchar(150) not null, ZipCode varchar(120) not null, PhoneNumber varchar(130) not null, Email varchar(150) not null, Primary Key(id));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc addressbook;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int          | NO   | PRI | NULL    | auto_increment |
+| FirstName   | varchar(150) | NO   |     | NULL    |                |
+| LastName    | varchar(150) | NO   |     | NULL    |                |
+| Address     | varchar(150) | NO   |     | NULL    |                |
+| City        | varchar(163) | NO   |     | NULL    |                |
+| State       | varchar(150) | NO   |     | NULL    |                |
+| ZipCode     | varchar(120) | NO   |     | NULL    |                |
+| PhoneNumber | varchar(130) | NO   |     | NULL    |                |
+| Email       | varchar(150) | NO   |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+9 rows in set (0.01 sec)
+
+mysql> insert into addressbook (FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email) values ('Shardul', 'Kumbhar', 'Ganesh nagar', 'gadhinglaj', 'Maharashtra', '456545', '7752314585', 'shardul123@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+
+| id | FirstName | LastName | Address      | City       | State       | ZipCode | PhoneNumber | Email                |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+
+|  1 | Shardul   | Kumbhar  | Ganesh nagar | gadhinglaj | Maharashtra | 456545  | 7752314585  | shardul123@gmail.com |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into addressbook (FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email) values ('Rahul', 'Patil', 'section-A', 'Panji', 'Goa', '663322', '8855664499', 'rahul111@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into addressbook (FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email) values ('Sam', 'Kodali', 'BondreyNagar', 'Pali', 'Noida', '893322', '77775200499', 'Sam111@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+
+| id | FirstName | LastName | Address      | City       | State       | ZipCode | PhoneNumber | Email                |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+
+|  1 | Shardul   | Kumbhar  | Ganesh nagar | gadhinglaj | Maharashtra | 456545  | 7752314585  | shardul123@gmail.com |
+|  2 | Rahul     | Patil    | section-A    | Panji      | Goa         | 663322  | 8855664499  | rahul111@gmail.com   |
+|  3 | Sam       | Kodali   | BondreyNagar | Pali       | Noida       | 893322  | 77775200499 | Sam111@gmail.com     |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into addressbook (FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email) values ('Radhika', 'Mane', 'Swarj', 'bog Malo', 'karnatak', '852369', '8989565689', 'radhika123@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+
+| id | FirstName | LastName | Address      | City       | State       | ZipCode | PhoneNumber | Email                |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+
+|  1 | Shardul   | Kumbhar  | Ganesh nagar | gadhinglaj | Maharashtra | 456545  | 7752314585  | shardul123@gmail.com |
+|  2 | Rahul     | Patil    | section-A    | Panji      | Goa         | 663322  | 8855664499  | rahul111@gmail.com   |
+|  3 | Sam       | Kodali   | BondreyNagar | Pali       | Noida       | 893322  | 77775200499 | Sam111@gmail.com     |
+|  4 | Radhika   | Mane     | Swarj        | bog Malo   | karnatak    | 852369  | 8989565689  | radhika123@gmail.com |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+
+4 rows in set (0.04 sec)
+
+mysql> select LastName from addressbook ORDER BY LastName;
++----------+
+| LastName |
++----------+
+| Kodali   |
+| Kumbhar  |
+| Mane     |
+| Patil    |
++----------+
+4 rows in set (0.01 sec)
+
+mysql> select State from addressbook ORDER BY State;
++-------------+
+| State       |
++-------------+
+| Goa         |
+| karnatak    |
+| Maharashtra |
+| Noida       |
++-------------+
+4 rows in set (0.00 sec)
+
+mysql> Alter table addressbook add Contect_Type varchar(100);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from addressbook;
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+| id | FirstName | LastName | Address      | City       | State       | ZipCode | PhoneNumber | Email                | Contect_Type |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+|  1 | Shardul   | Kumbhar  | Ganesh nagar | gadhinglaj | Maharashtra | 456545  | 7752314585  | shardul123@gmail.com | NULL         |
+|  2 | Rahul     | Patil    | section-A    | Panji      | Goa         | 663322  | 8855664499  | rahul111@gmail.com   | NULL         |
+|  3 | Sam       | Kodali   | BondreyNagar | Pali       | Noida       | 893322  | 77775200499 | Sam111@gmail.com     | NULL         |
+|  4 | Radhika   | Mane     | Swarj        | bog Malo   | karnatak    | 852369  | 8989565689  | radhika123@gmail.com | NULL         |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+4 rows in set (0.01 sec)
+
+mysql> Update addressbook set Contect_Type = 'Friend' where id = 2;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from addressbook;
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+| id | FirstName | LastName | Address      | City       | State       | ZipCode | PhoneNumber | Email                | Contect_Type |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+|  1 | Shardul   | Kumbhar  | Ganesh nagar | gadhinglaj | Maharashtra | 456545  | 7752314585  | shardul123@gmail.com | NULL         |
+|  2 | Rahul     | Patil    | section-A    | Panji      | Goa         | 663322  | 8855664499  | rahul111@gmail.com   | Friend       |
+|  3 | Sam       | Kodali   | BondreyNagar | Pali       | Noida       | 893322  | 77775200499 | Sam111@gmail.com     | NULL         |
+|  4 | Radhika   | Mane     | Swarj        | bog Malo   | karnatak    | 852369  | 8989565689  | radhika123@gmail.com | NULL         |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> Update addressbook set Contect_Type = 'Best Friend' where id = 3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> Update addressbook set Contect_Type = 'Best Friend' where id = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> Update addressbook set Contect_Type = 'Sister' where id = 4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from addressbook;
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+| id | FirstName | LastName | Address      | City       | State       | ZipCode | PhoneNumber | Email                | Contect_Type |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+|  1 | Shardul   | Kumbhar  | Ganesh nagar | gadhinglaj | Maharashtra | 456545  | 7752314585  | shardul123@gmail.com | Best Friend  |
+|  2 | Rahul     | Patil    | section-A    | Panji      | Goa         | 663322  | 8855664499  | rahul111@gmail.com   | Friend       |
+|  3 | Sam       | Kodali   | BondreyNagar | Pali       | Noida       | 893322  | 77775200499 | Sam111@gmail.com     | Best Friend  |
+|  4 | Radhika   | Mane     | Swarj        | bog Malo   | karnatak    | 852369  | 8989565689  | radhika123@gmail.com | Sister       |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> Delete from addressbook where FirstName ='Sam';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+| id | FirstName | LastName | Address      | City       | State       | ZipCode | PhoneNumber | Email                | Contect_Type |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+|  1 | Shardul   | Kumbhar  | Ganesh nagar | gadhinglaj | Maharashtra | 456545  | 7752314585  | shardul123@gmail.com | Best Friend  |
+|  2 | Rahul     | Patil    | section-A    | Panji      | Goa         | 663322  | 8855664499  | rahul111@gmail.com   | Friend       |
+|  4 | Radhika   | Mane     | Swarj        | bog Malo   | karnatak    | 852369  | 8989565689  | radhika123@gmail.com | Sister       |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+3 rows in set (0.04 sec)
+
+mysql> select * from addressbook where City ='Panji';
++----+-----------+----------+-----------+-------+-------+---------+-------------+--------------------+--------------+
+| id | FirstName | LastName | Address   | City  | State | ZipCode | PhoneNumber | Email              | Contect_Type |
++----+-----------+----------+-----------+-------+-------+---------+-------------+--------------------+--------------+
+|  2 | Rahul     | Patil    | section-A | Panji | Goa   | 663322  | 8855664499  | rahul111@gmail.com | Friend       |
++----+-----------+----------+-----------+-------+-------+---------+-------------+--------------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from addressbook where State ='Karnatak';
++----+-----------+----------+---------+----------+----------+---------+-------------+----------------------+--------------+
+| id | FirstName | LastName | Address | City     | State    | ZipCode | PhoneNumber | Email                | Contect_Type |
++----+-----------+----------+---------+----------+----------+---------+-------------+----------------------+--------------+
+|  4 | Radhika   | Mane     | Swarj   | bog Malo | karnatak | 852369  | 8989565689  | radhika123@gmail.com | Sister       |
++----+-----------+----------+---------+----------+----------+---------+-------------+----------------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select * Count (*) from addressbook where City ='gadhinglaj';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Count (*) from addressbook where City ='gadhinglaj'' at line 1
+mysql> select Count(*) from addressbook where City ='gadhinglaj';
++----------+
+| Count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.04 sec)
+
+mysql> select Count(*) from addressbook where State = 'Goa';
++----------+
+| Count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select * from addressbook where FirstName like 'S%';
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+| id | FirstName | LastName | Address      | City       | State       | ZipCode | PhoneNumber | Email                | Contect_Type |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+|  1 | Shardul   | Kumbhar  | Ganesh nagar | gadhinglaj | Maharashtra | 456545  | 7752314585  | shardul123@gmail.com | Best Friend  |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+1 row in set (0.01 sec)
+
+mysql> select * from addressbook where City like 'P%';
++----+-----------+----------+-----------+-------+-------+---------+-------------+--------------------+--------------+
+| id | FirstName | LastName | Address   | City  | State | ZipCode | PhoneNumber | Email              | Contect_Type |
++----+-----------+----------+-----------+-------+-------+---------+-------------+--------------------+--------------+
+|  2 | Rahul     | Patil    | section-A | Panji | Goa   | 663322  | 8855664499  | rahul111@gmail.com | Friend       |
++----+-----------+----------+-----------+-------+-------+---------+-------------+--------------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select Count(PhoneNumber) from addressbook where City = 'Panji';
++--------------------+
+| Count(PhoneNumber) |
++--------------------+
+|                  1 |
++--------------------+
+1 row in set (0.01 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+| id | FirstName | LastName | Address      | City       | State       | ZipCode | PhoneNumber | Email                | Contect_Type |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+|  1 | Shardul   | Kumbhar  | Ganesh nagar | gadhinglaj | Maharashtra | 456545  | 7752314585  | shardul123@gmail.com | Best Friend  |
+|  2 | Rahul     | Patil    | section-A    | Panji      | Goa         | 663322  | 8855664499  | rahul111@gmail.com   | Friend       |
+|  4 | Radhika   | Mane     | Swarj        | bog Malo   | karnatak    | 852369  | 8989565689  | radhika123@gmail.com | Sister       |
++----+-----------+----------+--------------+------------+-------------+---------+-------------+----------------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql>
